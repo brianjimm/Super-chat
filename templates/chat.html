@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    
+    <div id="chat-box" style="border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px;">
+        <!-- Messages will be displayed here -->
+    </div>
+
+    <form id="message-form" method="POST" action="/send_message">
+        <input type="text" name="message" id="message-input" placeholder="Type your message..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            // Function to fetch and display messages
+            function fetchMessages() {
+                $.getJSON('/get_messages', function(data) {
+                    $('#chat-box').empty(); // Clear the chat box
+                    data.forEach(function(msg) {
+                        $('#chat-box').append('<p><strong>' + msg[1] + ':</strong> ' + msg[0] + '</p>');
+                    });
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight); // Scroll to the bottom
+                });
+            }
+
+            // Fetch messages every 2 seconds
+            setInterval(fetchMessages, 2000);
+
+            // Handle form submission
+            $('#message-form').on('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                $.post($(this).attr('action'), $(this).serialize(), function() {
+                    $('#message-input').val(''); // Clear input after sending
+                });
+            });
+        });
+    </script>
+</body>
+                   </html>
