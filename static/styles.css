@@ -1,0 +1,71 @@
+/* Ensure responsive design */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Light background for better contrast */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #00ffff; /* Aqua color for headings */
+}
+
+button {
+    background-color: #00ffff; /* Aqua button background */
+    border: none;
+    color: white; /* White text on buttons */
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #008080; /* Darker aqua on hover */
+}
+
+#chat-box {
+    border: 1px solid #ccc;
+    height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: white; /* White background for chat area */
+    border-radius: 5px; /* Rounded corners for chat box */
+}
+
+#message-form {
+    display: flex; /* Flexbox for input and button alignment */
+}
+
+#message-input {
+    flex-grow: 1; /* Allow input to take available space */
+    padding: 10px;
+    border-radius: 5px; /* Rounded corners for input field */
+    border: 1px solid #ccc; /* Border for input field */
+}
+
+#message-input::placeholder {
+    color: #aaa; /* Placeholder color */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Add padding on smaller screens */
+    }
+
+    button {
+        width: 100%; /* Full width buttons on small screens */
+        margin-top: 5px; /* Smaller margin on mobile */
+    }
+
+    #message-form {
+        flex-direction: column; /* Stack input and button on mobile */
+        align-items: stretch; /* Stretch to full width */
+    }
+}
